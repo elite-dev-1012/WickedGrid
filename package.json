@@ -12,10 +12,6 @@
     "build": "node build.js",
     "docs": "node build.js && rm -rf docs && node ./node_modules/documentation/bin/documentation.js build wickedgrid.js --github --output docs --format html"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Spreadsheets/WickedGrid.git"
-  },
   "keywords": [
     "spreadsheet",
     "grid",
@@ -24,12 +20,6 @@
     "json",
     "csv"
   ],
-  "author": "Robert Lee Plummer Jr. <robertleeplummerjr@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Spreadsheets/WickedGrid/issues"
-  },
-  "homepage": "https://github.com/Spreadsheets/WickedGrid#readme",
   "devDependencies": {
     "mocha": "^2.5.3",
     "uglify-js": "^2.6.4"
