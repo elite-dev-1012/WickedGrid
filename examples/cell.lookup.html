@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="-1">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
@@ -9,11 +10,11 @@
     <title>jQuery.sheet - The Ajax Spreadsheet</title>
     <script src="../bower_components/jquery-legacy/dist/jquery.js"></script>
     <script src="../wickedgrid.js"></script>
-	<script src="../utilities/tableify.js"></script>
-	<script src="customFormula.js"></script>
+    <script src="../utilities/tableify.js"></script>
+    <script src="customFormula.js"></script>
     <script>
         $.sheet.preLoad('../');
-        $(function() {
+        $(function () {
 
             var table1 = tableify("Density	Viscosity	Temperature\n\
 0.457	3.55	500\n\
@@ -25,7 +26,7 @@
 0.946	2.17	100\n\
 1.09	1.95	50\n\
 1.29	1.71	0", 'Weather Statistics'),
-	            table2 = tableify("=TRANSPOSE(SHEET2!A2:A10)\t\t\t\t\t\t\t\t\t\n\
+                table2 = tableify("=TRANSPOSE(SHEET2!A2:A10)\t\t\t\t\t\t\t\t\t\n\
 =TRANSPOSE(A1:I1)\t\t\t\t\t\t\t\t\t\n\
 \t\t\t\t\t\t\t\t\t\t\n\
 \t\t\t\t\t\t\t\t\t\t\n\
@@ -37,123 +38,125 @@
 \t\t\t\t\t\t\t\t\t\t", "Transpose Playground");
 
             $('#sheetParent')
-                    .append(table1)
-		            .append(table2)
-                    .sheet({
-			            formulaFunctions: formulaFunctions
-		            });
+                .append(table1)
+                .append(table2)
+                .sheet({
+                    formulaFunctions: formulaFunctions
+                });
         });
     </script>
 </head>
+
 <body>
-<div id="sheetParent" title="Cell Lookup" style="height: 600px;">
-    <table title="Test">
-        <tr>
-            <td class="styleBold styleCenter">Function</td>
-            <td class="styleBold styleCenter">Execution</td>
-            <td class="styleBold styleCenter">Desired Result</td>
-            <td class="styleBold styleCenter">Correct?</td>
-            <td class="styleBold styleCenter">Notes</td>
-        </tr>
-        <tr>
-            <td>VLOOKUP</td>
-            <td data-formula="VLOOKUP(1,SHEET2!A2:C10,2)"></td>
-            <td>2.17</td>
-            <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>VLOOKUP</td>
-            <td data-formula="=VLOOKUP(1,SHEET2!A2:C10,3,TRUE)"></td>
-            <td>100</td>
-            <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>VLOOKUP</td>
-            <td data-formula="=VLOOKUP(0.7,SHEET2!A2:C10,3,FALSE)"></td>
-            <td></td>
-            <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>VLOOKUP</td>
-            <td data-formula="VLOOKUP(0.1,SHEET2!A2:C10,2,TRUE)"></td>
-            <td>1.71</td>
-            <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>HLOOKUP</td>
-            <td data-formula="HLOOKUP('Density',SHEET2!A1:C10,2,TRUE)"></td>
-            <td>0.457</td>
-            <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>HLOOKUP</td>
-            <td data-formula="HLOOKUP('Viscosity',SHEET2!A1:C10,1,TRUE)"></td>
-            <td>Viscosity</td>
-            <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>HLOOKUP</td>
-            <td data-formula="HLOOKUP('Temperature',SHEET2!A1:C10,6,TRUE)"></td>
-            <td>200</td>
-            <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>HLOOKUP</td>
-            <td data-formula="HLOOKUP('Test',SHEET2!A1:C10,2,TRUE)"></td>
-            <td></td>
-            <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-            <td></td>
-        </tr>
-	    <tr>
-		    <td>MATCH</td>
-		    <td data-formula="MATCH(0.947, SHEET2!A2:A10, 1)"></td>
-		    <td>7</td>
-		    <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-		    <td></td>
-	    </tr>
-	    <tr>
-		    <td>MATCH</td>
-		    <td data-formula="MATCH(2.75, SHEET2!A2:C10, 0)"></td>
-		    <td></td>
-		    <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-		    <td></td>
-	    </tr>
-	    <tr>
-		    <td>MATCH</td>
-		    <td data-formula="MATCH(2.75, SHEET2!B2:B10, -1)"></td>
-		    <td>4</td>
-		    <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-		    <td></td>
-	    </tr>
-	    <tr>
-		    <td>TRANSPOSE</td>
-		    <td data-formula="TRANSPOSE(SHEET2!A2:A10)"></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-	    </tr>
-	    <tr>
-		    <td>OFFSET</td>
-		    <td data-formula="OFFSET(SHEET2!A2,2,2)"></td>
-		    <td>300</td>
-		    <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-		    <td></td>
-	    </tr>
-	    <tr>
-		    <td>OFFSET</td>
-		    <td data-formula="SUM(OFFSET(SHEET2!A2,2,2,2,2))"></td>
-		    <td>550</td>
-		    <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
-		    <td></td>
-	    </tr>
-    </table>
-</div>
+    <div id="sheetParent" title="Cell Lookup" style="height: 600px;">
+        <table title="Test">
+            <tr>
+                <td class="styleBold styleCenter">Function</td>
+                <td class="styleBold styleCenter">Execution</td>
+                <td class="styleBold styleCenter">Desired Result</td>
+                <td class="styleBold styleCenter">Correct?</td>
+                <td class="styleBold styleCenter">Notes</td>
+            </tr>
+            <tr>
+                <td>VLOOKUP</td>
+                <td data-formula="VLOOKUP(1,SHEET2!A2:C10,2)"></td>
+                <td>2.17</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>VLOOKUP</td>
+                <td data-formula="=VLOOKUP(1,SHEET2!A2:C10,3,TRUE)"></td>
+                <td>100</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>VLOOKUP</td>
+                <td data-formula="=VLOOKUP(0.7,SHEET2!A2:C10,3,FALSE)"></td>
+                <td></td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>VLOOKUP</td>
+                <td data-formula="VLOOKUP(0.1,SHEET2!A2:C10,2,TRUE)"></td>
+                <td>1.71</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>HLOOKUP</td>
+                <td data-formula="HLOOKUP('Density',SHEET2!A1:C10,2,TRUE)"></td>
+                <td>0.457</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>HLOOKUP</td>
+                <td data-formula="HLOOKUP('Viscosity',SHEET2!A1:C10,1,TRUE)"></td>
+                <td>Viscosity</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>HLOOKUP</td>
+                <td data-formula="HLOOKUP('Temperature',SHEET2!A1:C10,6,TRUE)"></td>
+                <td>200</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>HLOOKUP</td>
+                <td data-formula="HLOOKUP('Test',SHEET2!A1:C10,2,TRUE)"></td>
+                <td></td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>MATCH</td>
+                <td data-formula="MATCH(0.947, SHEET2!A2:A10, 1)"></td>
+                <td>7</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>MATCH</td>
+                <td data-formula="MATCH(2.75, SHEET2!A2:C10, 0)"></td>
+                <td></td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>MATCH</td>
+                <td data-formula="MATCH(2.75, SHEET2!B2:B10, -1)"></td>
+                <td>4</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>TRANSPOSE</td>
+                <td data-formula="TRANSPOSE(SHEET2!A2:A10)"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>OFFSET</td>
+                <td data-formula="OFFSET(SHEET2!A2,2,2)"></td>
+                <td>300</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>OFFSET</td>
+                <td data-formula="SUM(OFFSET(SHEET2!A2,2,2,2,2))"></td>
+                <td>550</td>
+                <td data-formula="IF(THISROWCELL('B') = THISROWCELL('C'), TRUE, FALSE)"></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
 </body>
+
 </html>
